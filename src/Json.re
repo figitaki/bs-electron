@@ -22,8 +22,18 @@ let toValidJson = [%raw
       if (Array.isArray(o)){
         return [o.hasOwnProperty("tag") ? o.tag : -1, o.map(toValidJson)];
       }
-     console.log(o);
-      throw new Error("Cannot serialize unidentified object [" + o + "].")
+
+      if (o == null) {
+        return null;
+      }
+
+      var newObj = {};
+      for (var k in o) {
+        if (o.hasOwnProperty(k)){
+          newObj[k] = toValidJson(o[k])
+        }
+      }
+      return newObj
   }
 |}
 ];
@@ -48,7 +58,18 @@ let fromValidJson = [%raw
           return a
         }
       }
-      throw new Error("Cannot deserialize unidentified object [" + o + "].")
+
+      if (o == null) {
+        return null;
+      }
+
+      var newObj = {};
+      for (var k in o) {
+        if (o.hasOwnProperty(k)){
+          newObj[k] = fromValidJson(o[k])
+        }
+      }
+      return newObj
   }
 |}
 ];
