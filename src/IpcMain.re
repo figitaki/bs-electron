@@ -4,7 +4,7 @@ module type IpcType = {
 };
 
 module MakeIpcMain = (T: IpcType) => {
-  type event;
+  type event = {. "sender": {. [@bs.meth] "send": (string, string) => unit}};
   type messageCallback('a) = (. event, 'a) => unit;
   type ipcCallback = (. event, string) => unit;
   [@bs.module "electron"] [@bs.scope "ipcMain"]
