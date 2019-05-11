@@ -19,6 +19,8 @@ module MakeBrowserWindow =
     .
     width: int,
     height: int,
+    minWidth: Js.null(int),
+    minHeight: Js.null(int),
     frame: Js.null(bool),
     titleBarStyle: Js.null(string),
     fullscreenable: Js.null(bool),
@@ -31,6 +33,8 @@ module MakeBrowserWindow =
     (
       ~width: int,
       ~height: int,
+      ~minWidth: int=?,
+      ~minHeight: int=?,
       ~frame: bool=?,
       ~titleBarStyle: [@bs.string] [ | [@bs.as "hidden"] `Hidden]=?,
       ~fullscreenable: bool=?,
