@@ -36,7 +36,12 @@ module MakeBrowserWindow =
       ~minWidth: int=?,
       ~minHeight: int=?,
       ~frame: bool=?,
-      ~titleBarStyle: [@bs.string] [ | [@bs.as "hidden"] `Hidden]=?,
+      ~titleBarStyle: [@bs.string] [
+                        | [@bs.as "hidden"] `Hidden
+                        | [@bs.as "hiddenInset"] `HiddenInset
+                        | [@bs.as "customButtonsOnHover"] `CustomButtonsOnHover
+                      ]
+                        =?,
       ~fullscreenable: bool=?,
       ~resizeable: bool=?,
       ~transparent: bool=?,
