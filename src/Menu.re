@@ -15,6 +15,7 @@ module Item = {
     "submenu": array(t),
     "sublabel": option(string),
     "accelerator": option(string),
+    "selector": option(string),
     "icon": option(string),
     "role": option(string),
     "click": option(unit => unit),
@@ -27,6 +28,7 @@ module Item = {
         ~enabled=true,
         ~icon=?,
         ~accelerator=?,
+        ~selector=?,
         ~role=?,
         ~click=?,
         (),
@@ -45,6 +47,7 @@ module Item = {
       "sublabel": sublabel,
       "submenu": submenu,
       "accelerator": accelerator,
+      "selector": selector,
       "icon": icon,
       "role": role,
       "enabled": enabled,
@@ -55,3 +58,6 @@ module Item = {
 type t;
 [@bs.module "electron"] [@bs.new] external make: unit => t = "Menu";
 [@bs.send] external append: (t, Item.t) => unit = "";
+
+[@bs.module "electron"] [@bs.scope "Menu"] [@bs.val]
+external setApplicationMenu: t => unit = "setApplicationMenu";
