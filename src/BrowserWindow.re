@@ -25,6 +25,7 @@ module MakeBrowserWindow =
     titleBarStyle: Js.null(string),
     fullscreenable: Js.null(bool),
     resizeable: Js.null(bool),
+    icon: Js.null(string),
     webPreferences: Js.null(webPreferences),
   };
 
@@ -46,6 +47,7 @@ module MakeBrowserWindow =
       ~resizeable: bool=?,
       ~transparent: bool=?,
       ~title: string=?,
+      ~icon: string=?,
       ~backgroundColor: string=?,
       ~webPreferences: webPreferences=?,
       unit
